@@ -19,31 +19,42 @@
 /* ============================================================
    THEME TOKENS  —  edit these to re-colour the whole invite
    ============================================================ */
+/* ============================================================
+   SUNSET CORAL THEME
+   These variables keep their original names (--maroon / --gold)
+   because the whole stylesheet references them; only the values
+   are the coral palette. To re-colour the entire invitation,
+   edit the numbers in this block and nothing else.
+   ============================================================ */
 :root{
-  --maroon:#6b0f1a;
-  --maroon-deep:#4a0a12;
-  --maroon-soft:#8c1c2b;
-  --gold:#b8891f;
-  --gold-light:#ebcd7d;
-  --gold-pale:#f6e7bd;
-  --cream:#fdf7ec;
-  --cream-2:#f7ecd9;
-  --ink:#2c1a0f;
-  --ink-soft:#4f3a2c;
+  /* the deep colour: coral red — dark cards, cover, buttons */
+  --maroon:#c13a4c;
+  --maroon-deep:#8d2435;
+  --maroon-soft:#e2576a;
 
-  --gold-foil:linear-gradient(135deg,#8a6318 0%,#b38728 18%,#f6e7a8 38%,#c8a140 52%,#8a6318 70%,#dcc277 88%,#9c7420 100%);
-  --gold-solid:#b8821a;   /* flat gold used for the names on the invitation page */
+  /* the metal: warm saffron gold (ornaments, names, borders) */
+  --gold:#df9f1c;
+  --gold-light:#f7d279;
+  --gold-pale:#fdeec6;
+  --gold-solid:#dc9a1c;        /* flat gold used for the names */
+  --gold-antique:#c88c10;
+  --gold-champagne:#eab95a;
+  --gold-bronze:#9d6c08;
+  --gold-foil:linear-gradient(135deg,#9d6c08 0%,#c88c10 18%,#fde9a8 38%,#dfa832 52%,#9d6c08 70%,#f0cb77 88%,#b07c0c 100%);
 
-  /* ---- tonal gold & maroon palette ---- */
-  --gold-antique:#a8801e;
-  --gold-champagne:#cbab5c;
-  --gold-bronze:#8a6318;
-  --wine:#7d1226;
-  --rosewood:#9e2436;
-  --blush:#e7cfc6;
+  /* warm paper */
+  --cream:#fff7ee;
+  --cream-2:#ffe9d8;
+  --ink:#3a1f18;
+  --ink-soft:#67402f;
+
+  /* highlight hues */
+  --magenta:#c0327a;
+  --coral-light:#ffb38a;
+  --blush:#f6d5c4;
 
   /* each card sets --accent / --accent-deep; these are the fallbacks */
-  --accent:#b38728;
+  --accent:#df9f1c;
   --accent-deep:var(--maroon);
 
   --f-display:'Marcellus',Georgia,serif;
@@ -52,7 +63,7 @@
   --f-caps:'Cinzel',Georgia,serif;
 
   --card-radius:18px;
-  --shadow-soft:0 18px 48px -24px rgba(74,10,18,.45);
+  --shadow-soft:0 18px 48px -24px rgba(141,36,53,.45);
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -63,12 +74,12 @@ body{
   color:var(--ink);
   background-color:var(--cream);
   background-image:
-    radial-gradient(circle at 10% 6%,  rgba(184,137,31,.16), transparent 42%),
-    radial-gradient(circle at 92% 18%, rgba(107,15,26,.11), transparent 40%),
-    radial-gradient(circle at 4% 58%,  rgba(203,171,92,.15), transparent 36%),
-    radial-gradient(circle at 96% 72%, rgba(107,15,26,.09), transparent 38%),
-    radial-gradient(circle at 50% 100%,rgba(184,137,31,.15), transparent 54%),
-    radial-gradient(rgba(179,135,40,.16) 1px, transparent 1.2px);
+    radial-gradient(circle at 10% 6%,  rgba(223,159,28,.20), transparent 42%),
+    radial-gradient(circle at 92% 18%, rgba(193,58,76,.15), transparent 40%),
+    radial-gradient(circle at 4% 58%,  rgba(226,87,106,.14), transparent 36%),
+    radial-gradient(circle at 96% 72%, rgba(192,50,122,.12), transparent 38%),
+    radial-gradient(circle at 50% 100%,rgba(223,159,28,.17), transparent 54%),
+    radial-gradient(rgba(223,159,28,.17) 1px, transparent 1.2px);
   background-size:auto,auto,auto,auto,auto,26px 26px;
   background-attachment:fixed,fixed,fixed,fixed,fixed,scroll;
   overflow-x:hidden;
@@ -82,8 +93,8 @@ a{color:inherit;}
    ============================================================ */
 #progress{
   position:fixed;top:0;left:0;height:3px;width:0;z-index:140;
-  background:linear-gradient(90deg,var(--maroon),var(--gold-bronze) 26%,var(--gold-light) 52%,var(--gold-antique) 76%,var(--maroon));
-  box-shadow:0 0 10px rgba(184,137,31,.65);
+  background:linear-gradient(90deg,var(--magenta),var(--maroon-soft) 26%,var(--gold-light) 52%,var(--gold) 76%,var(--magenta));
+  box-shadow:0 0 10px rgba(223,159,28,.7);
   transition:width .12s linear;opacity:0;
 }
 #progress.on{opacity:1;}
@@ -97,14 +108,14 @@ a{color:inherit;}
   overflow-y:auto;-webkit-overflow-scrolling:touch;
   padding:26px 18px calc(26px + env(safe-area-inset-bottom));
   text-align:center;
-  background:radial-gradient(ellipse at 50% 18%, #8c1c2b 0%, #6b0f1a 42%, #4a0a12 100%);
+  background:radial-gradient(ellipse at 50% 18%, var(--maroon-soft) 0%, var(--maroon) 42%, var(--maroon-deep) 100%);
   cursor:pointer;
   transition:opacity .9s ease, transform .9s cubic-bezier(.65,0,.35,1), visibility .9s;
   -webkit-tap-highlight-color:transparent;
 }
 #cover::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:radial-gradient(rgba(227,196,114,.22) 1px, transparent 1.3px);
+  background-image:radial-gradient(rgba(247,210,121,.22) 1px, transparent 1.3px);
   background-size:22px 22px;
   mask-image:radial-gradient(ellipse at center, #000 20%, transparent 78%);
   -webkit-mask-image:radial-gradient(ellipse at center, #000 20%, transparent 78%);
@@ -152,7 +163,7 @@ a{color:inherit;}
 /* rising gold sparkles (created in script) */
 .spark{
   position:absolute;border-radius:50%;background:var(--gold-pale);
-  box-shadow:0 0 7px rgba(246,231,189,.95);pointer-events:none;z-index:1;opacity:0;
+  box-shadow:0 0 7px rgba(253,238,198,.95);pointer-events:none;z-index:1;opacity:0;
 }
 
 /* staggered entrance for everything on the cover */
@@ -170,21 +181,6 @@ a{color:inherit;}
 }
 @keyframes spin{to{transform:rotate(360deg);}}
 
-/* names on the cover, under the envelope */
-.cover-names{
-  position:relative;z-index:2;
-  font-family:var(--f-script);font-weight:700;
-  font-size:clamp(2.4rem,10.4vw,4rem);line-height:1.12;
-  color:var(--gold-pale);margin:0;padding:.04em .16em;
-  text-shadow:0 2px 12px rgba(0,0,0,.4);
-  animation:riseIn 1s cubic-bezier(.22,1,.36,1) .4s both;
-}
-.cover-names .amp{
-  display:block;font-family:var(--f-body);font-weight:400;font-style:italic;
-  font-size:clamp(.7rem,2.6vw,.95rem);letter-spacing:.24em;text-transform:lowercase;
-  color:rgba(246,231,189,.78);margin:4px 0;line-height:1.2;
-}
-
 /* envelope — the centrepiece of the cover */
 .env{
   position:relative;width:clamp(218px,66vw,340px);aspect-ratio:3/2;
@@ -196,7 +192,7 @@ a{color:inherit;}
 @keyframes floatEnv{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 .env::before{                      /* warm halo behind the envelope */
   content:"";position:absolute;inset:-26% -18%;border-radius:50%;
-  background:radial-gradient(ellipse at center,rgba(246,231,189,.34),rgba(246,231,189,0) 68%);
+  background:radial-gradient(ellipse at center,rgba(253,238,198,.34),rgba(253,238,198,0) 68%);
   filter:blur(8px);z-index:0;
   animation:halo 4.4s ease-in-out infinite;
 }
@@ -232,7 +228,7 @@ a{color:inherit;}
 .env-seal{
   position:absolute;top:52%;left:50%;transform:translate(-50%,-50%);
   width:clamp(62px,17vw,88px);height:clamp(62px,17vw,88px);border-radius:50%;
-  background:radial-gradient(circle at 34% 28%,#a8202f,#6b0f1a 64%,#45090f);
+  background:radial-gradient(circle at 34% 28%,var(--maroon-soft),var(--maroon) 64%,var(--maroon-deep));
   box-shadow:
     0 8px 18px rgba(0,0,0,.5),
     inset 0 2px 5px rgba(255,255,255,.14),
@@ -242,7 +238,7 @@ a{color:inherit;}
 }
 .env-seal::before{            /* single hairline ring, gently pulsing */
   content:"";position:absolute;inset:4px;border-radius:50%;
-  border:1px solid rgba(246,231,189,.55);
+  border:1px solid rgba(253,238,198,.55);
   animation:ringPulse 3.2s ease-in-out infinite;
 }
 @keyframes ringPulse{0%,100%{opacity:.55;transform:scale(1);}50%{opacity:1;transform:scale(1.05);}}
@@ -298,9 +294,9 @@ a{color:inherit;}
 .hero::before{
   content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
   background:
-    radial-gradient(ellipse 62% 46% at 50% 38%, rgba(184,137,31,.18), transparent 70%),
-    radial-gradient(ellipse 44% 32% at 14% 70%, rgba(107,15,26,.10), transparent 70%),
-    radial-gradient(ellipse 44% 32% at 86% 70%, rgba(203,171,92,.16), transparent 70%);
+    radial-gradient(ellipse 62% 46% at 50% 38%, rgba(223,159,28,.20), transparent 70%),
+    radial-gradient(ellipse 44% 32% at 14% 70%, rgba(226,87,106,.16), transparent 70%),
+    radial-gradient(ellipse 44% 32% at 86% 70%, rgba(192,50,122,.14), transparent 70%);
 }
 .hero .wrap{position:relative;z-index:1;}
 
@@ -309,8 +305,8 @@ a{color:inherit;}
   display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,18px);
   width:min(300px,72%);margin:clamp(20px,4.5vw,30px) auto 0;
 }
-.hero-mark .line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--maroon-soft) 26%,var(--gold-antique) 64%,var(--gold-light));}
-.hero-mark .line:last-child{background:linear-gradient(270deg,transparent,var(--maroon-soft) 26%,var(--gold-antique) 64%,var(--gold-light));}
+.hero-mark .line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--magenta) 22%,var(--maroon-soft) 48%,var(--gold) 74%,var(--gold-light));}
+.hero-mark .line:last-child{background:linear-gradient(270deg,transparent,var(--magenta) 22%,var(--maroon-soft) 48%,var(--gold) 74%,var(--gold-light));}
 .hero-mark .mono{color:var(--gold-solid);text-shadow:none;}
 .hero-mark .mono i{font-size:clamp(1.1rem,3.5vw,1.5rem);}
 .hero-mark .mono b{font-size:clamp(.95rem,3vw,1.24rem);}
@@ -380,24 +376,24 @@ a{color:inherit;}
     transparent);
 }
 
-/* ---- tonal gold variants for the cream cards ---- */
-.card--gold    {--accent:var(--gold);         --accent-deep:var(--maroon);}
-.card--antique {--accent:var(--gold-antique); --accent-deep:var(--maroon);}
-.card--bronze  {--accent:var(--gold-bronze);  --accent-deep:var(--maroon);}
+/* ---- warm accent variants for the cream cards ---- */
+.card--gold    {--accent:var(--gold);     --accent-deep:#b06a0a;}
+.card--antique {--accent:var(--magenta);  --accent-deep:var(--maroon-deep);}
+.card--bronze  {--accent:var(--maroon-soft); --accent-deep:var(--maroon);}
 
-/* ---- deep maroon cards, gold-lit ---- */
+/* ---- deep coral cards, gold-lit ---- */
 .card.dark{
   --accent:var(--gold-light);
   --accent-deep:var(--gold-pale);
   background:linear-gradient(165deg,var(--maroon-soft),var(--maroon) 55%,var(--maroon-deep));
   background:
-    radial-gradient(circle at 18% 0%, rgba(184,137,31,.26), transparent 54%),
-    radial-gradient(circle at 86% 104%, rgba(74,10,18,.6), transparent 56%),
+    radial-gradient(circle at 18% 0%, rgba(247,210,121,.3), transparent 54%),
+    radial-gradient(circle at 86% 104%, rgba(141,36,53,.6), transparent 56%),
     linear-gradient(165deg,var(--maroon-soft) 0%,var(--maroon) 50%,var(--maroon-deep) 100%);
-  border-color:rgba(227,196,114,.5);color:var(--cream);
-  box-shadow:0 20px 50px -24px rgba(74,10,18,.75);
+  border-color:rgba(253,238,198,.55);color:var(--cream);
+  box-shadow:0 20px 50px -24px rgba(141,36,53,.75);
 }
-.card.dark::before{border-color:rgba(227,196,114,.34);}
+.card.dark::before{border-color:rgba(253,238,198,.38);}
 .card.dark::after{
   background:linear-gradient(90deg,transparent,var(--gold-bronze) 18%,var(--gold-pale) 50%,var(--gold-bronze) 82%,transparent);
 }
@@ -405,8 +401,8 @@ a{color:inherit;}
 .card.dark .veil{
   position:absolute;inset:0;pointer-events:none;opacity:.14;z-index:0;
   background-image:
-    radial-gradient(rgba(246,231,189,.9) 1px, transparent 1.4px),
-    radial-gradient(rgba(246,231,189,.5) 1px, transparent 1.4px);
+    radial-gradient(rgba(253,238,198,.9) 1px, transparent 1.4px),
+    radial-gradient(rgba(253,238,198,.5) 1px, transparent 1.4px);
   background-size:30px 30px, 30px 30px;
   background-position:0 0, 15px 15px;
   mask-image:radial-gradient(ellipse at center,#000 30%,transparent 82%);
@@ -435,7 +431,7 @@ a{color:inherit;}
 .divider{display:flex;align-items:center;justify-content:center;gap:9px;margin:16px auto 22px;max-width:200px;position:relative;z-index:2;}
 .divider span{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--accent),transparent);}
 .divider i{font-style:normal;color:var(--accent);font-size:.7rem;letter-spacing:.2em;}
-.dark .divider span{background:linear-gradient(90deg,transparent,rgba(227,196,114,.8),transparent);}
+.dark .divider span{background:linear-gradient(90deg,transparent,rgba(247,210,121,.8),transparent);}
 .dark .divider i{color:var(--gold-light);}
 
 /* ---- gold filigree divider between sections ---- */
@@ -470,7 +466,10 @@ a{color:inherit;}
   box-shadow:0 6px 14px -8px var(--accent-deep);
 }
 .event-rows{display:grid;gap:12px;position:relative;z-index:2;}
-@media(min-width:560px){.event-rows{grid-template-columns:1fr 1fr;}}
+@media(min-width:560px){
+  .event-rows{grid-template-columns:1fr 1fr;}
+  .erow--full{grid-column:1 / -1;}   /* the date spans both ceremony columns */
+}
 .erow{
   display:flex;gap:12px;align-items:flex-start;text-align:left;
   background:rgba(255,255,255,.76);
@@ -494,7 +493,7 @@ a{color:inherit;}
   color:var(--gold-pale);font-family:var(--f-caps);font-weight:500;font-size:.66rem;
   letter-spacing:.2em;text-transform:uppercase;
   box-shadow:0 12px 26px -14px rgba(107,15,26,.95);
-  border:1px solid rgba(227,196,114,.65);
+  border:1px solid rgba(247,210,121,.65);
   transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
 }
 .btn svg{width:15px;height:15px;fill:currentColor;flex:none;}
@@ -502,8 +501,8 @@ a{color:inherit;}
 /* ---- countdown ---- */
 .cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,2.2vw,16px);position:relative;z-index:2;}
 .cd-cell{
-  border:1px solid rgba(227,196,114,.45);border-radius:12px;
-  background:linear-gradient(165deg,rgba(246,231,189,.17),rgba(184,137,31,.13));
+  border:1px solid rgba(247,210,121,.45);border-radius:12px;
+  background:linear-gradient(165deg,rgba(253,238,198,.17),rgba(223,159,28,.15));
   padding:clamp(13px,3.4vw,20px) 4px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
 }
@@ -529,7 +528,7 @@ footer .f-en{font-family:var(--f-caps);font-weight:400;font-size:.62rem;letter-s
 /* ---- music button ---- */
 #music{
   position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:130;
-  width:52px;height:52px;border-radius:50%;border:1px solid rgba(227,196,114,.65);
+  width:52px;height:52px;border-radius:50%;border:1px solid rgba(247,210,121,.65);
   background:linear-gradient(145deg,var(--maroon-soft),var(--maroon-deep));
   color:var(--gold-pale);display:grid;place-items:center;cursor:pointer;
   box-shadow:0 12px 28px -12px rgba(0,0,0,.75);
@@ -537,7 +536,7 @@ footer .f-en{font-family:var(--f-caps);font-weight:400;font-size:.62rem;letter-s
   -webkit-tap-highlight-color:transparent;
 }
 #music svg{width:20px;height:20px;fill:currentColor;}
-#music .ring{position:absolute;inset:-5px;border-radius:50%;border:1px dashed rgba(227,196,114,.45);animation:spin 9s linear infinite;animation-play-state:paused;}
+#music .ring{position:absolute;inset:-5px;border-radius:50%;border:1px dashed rgba(247,210,121,.45);animation:spin 9s linear infinite;animation-play-state:paused;}
 #music.playing .ring{animation-play-state:running;}
 #music .ico-pause{display:none;}
 #music.playing .ico-play{display:none;}
@@ -615,7 +614,6 @@ footer .f-en{
   .cover-kolam{display:none;}
   .env{width:clamp(180px,46vw,240px);}
   .cover-inner{gap:8px;}
-  .cover-names{font-size:clamp(2rem,8.4vw,2.9rem);}
 }
 
 /* ============================================================
@@ -666,13 +664,13 @@ footer .f-en{
 <div id="cover" role="button" tabindex="0" aria-label="Tap to open your invitation">
 
   <svg class="toran" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
-    <path id="toranRope" d="M0 6 Q 300 44 600 12 T 1200 6" stroke="#e3c472" stroke-width="2" fill="none" opacity=".8"/>
+    <path id="toranRope" d="M0 6 Q 300 44 600 12 T 1200 6" stroke="#f7d279" stroke-width="2" fill="none" opacity=".8"/>
     <g id="toranLeaves" fill="#2f6b3a" stroke="#19401f" stroke-width="1"></g>
   </svg>
 
   <!-- spinning rangoli wheels, one each side -->
   <svg class="side-rangoli left" viewBox="0 0 200 200" aria-hidden="true">
-    <g class="wheel" fill="none" stroke="#f6e7bd" stroke-width="1.2">
+    <g class="wheel" fill="none" stroke="#fdeec6" stroke-width="1.2">
       <circle cx="100" cy="100" r="22"/><circle cx="100" cy="100" r="46"/>
       <circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="92"/>
       <path d="M100 78 C 74 68, 74 34, 100 24 C 126 34, 126 68, 100 78 Z"/>
@@ -688,7 +686,7 @@ footer .f-en{
   </svg>
 
   <svg class="side-rangoli right" viewBox="0 0 200 200" aria-hidden="true">
-    <g class="wheel" fill="none" stroke="#f6e7bd" stroke-width="1.2">
+    <g class="wheel" fill="none" stroke="#fdeec6" stroke-width="1.2">
       <circle cx="100" cy="100" r="22"/><circle cx="100" cy="100" r="46"/>
       <circle cx="100" cy="100" r="70"/><circle cx="100" cy="100" r="92"/>
       <path d="M100 78 C 74 68, 74 34, 100 24 C 126 34, 126 68, 100 78 Z"/>
@@ -707,12 +705,12 @@ footer .f-en{
 
   <!-- deepams flanking the envelope -->
   <svg class="side-lamp left" viewBox="0 0 56 68" aria-hidden="true">
-    <circle class="halo" cx="28" cy="17" r="16" fill="#f2c572"/>
+    <circle class="halo" cx="28" cy="17" r="16" fill="#ffc98a"/>
     <g class="flame">
-      <path d="M28 3c4.8 6.8 6.9 11 6.9 14.9 0 4.3-3 7.5-6.9 7.5s-6.9-3.2-6.9-7.5C21.1 14 23.2 9.8 28 3z" fill="#e2a223"/>
-      <path d="M28 11.5c2.4 3.9 3.4 6.3 3.4 8.4 0 2.4-1.5 4.1-3.4 4.1s-3.4-1.7-3.4-4.1c0-2.1 1-4.5 3.4-8.4z" fill="#fdeeb6"/>
+      <path d="M28 3c4.8 6.8 6.9 11 6.9 14.9 0 4.3-3 7.5-6.9 7.5s-6.9-3.2-6.9-7.5C21.1 14 23.2 9.8 28 3z" fill="#e8761f"/>
+      <path d="M28 11.5c2.4 3.9 3.4 6.3 3.4 8.4 0 2.4-1.5 4.1-3.4 4.1s-3.4-1.7-3.4-4.1c0-2.1 1-4.5 3.4-8.4z" fill="#fff0c9"/>
     </g>
-    <g fill="none" stroke="#e3c472" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+    <g fill="none" stroke="#f7d279" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
       <path d="M5 32h46"/>
       <path d="M7.5 32c2 8.2 10 13.6 20.5 13.6S46.5 40.2 48.5 32"/>
       <path d="M28 45.6V53"/>
@@ -722,12 +720,12 @@ footer .f-en{
   </svg>
 
   <svg class="side-lamp right" viewBox="0 0 56 68" aria-hidden="true">
-    <circle class="halo" cx="28" cy="17" r="16" fill="#f2c572"/>
+    <circle class="halo" cx="28" cy="17" r="16" fill="#ffc98a"/>
     <g class="flame">
-      <path d="M28 3c4.8 6.8 6.9 11 6.9 14.9 0 4.3-3 7.5-6.9 7.5s-6.9-3.2-6.9-7.5C21.1 14 23.2 9.8 28 3z" fill="#e2a223"/>
-      <path d="M28 11.5c2.4 3.9 3.4 6.3 3.4 8.4 0 2.4-1.5 4.1-3.4 4.1s-3.4-1.7-3.4-4.1c0-2.1 1-4.5 3.4-8.4z" fill="#fdeeb6"/>
+      <path d="M28 3c4.8 6.8 6.9 11 6.9 14.9 0 4.3-3 7.5-6.9 7.5s-6.9-3.2-6.9-7.5C21.1 14 23.2 9.8 28 3z" fill="#e8761f"/>
+      <path d="M28 11.5c2.4 3.9 3.4 6.3 3.4 8.4 0 2.4-1.5 4.1-3.4 4.1s-3.4-1.7-3.4-4.1c0-2.1 1-4.5 3.4-8.4z" fill="#fff0c9"/>
     </g>
-    <g fill="none" stroke="#e3c472" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+    <g fill="none" stroke="#f7d279" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
       <path d="M5 32h46"/>
       <path d="M7.5 32c2 8.2 10 13.6 20.5 13.6S46.5 40.2 48.5 32"/>
       <path d="M28 45.6V53"/>
@@ -738,7 +736,7 @@ footer .f-en{
 
   <div class="cover-inner">
     <svg class="cover-kolam" viewBox="0 0 120 120" aria-hidden="true">
-      <g fill="none" stroke="#e3c472" stroke-width="1.3" opacity=".9">
+      <g fill="none" stroke="#f7d279" stroke-width="1.3" opacity=".9">
         <circle cx="60" cy="60" r="12"/>
         <path d="M60 48 C 42 42, 42 24, 60 18 C 78 24, 78 42, 60 48 Z"/>
         <path d="M60 48 C 42 42, 42 24, 60 18 C 78 24, 78 42, 60 48 Z" transform="rotate(45 60 60)"/>
@@ -749,7 +747,7 @@ footer .f-en{
         <path d="M60 48 C 42 42, 42 24, 60 18 C 78 24, 78 42, 60 48 Z" transform="rotate(270 60 60)"/>
         <path d="M60 48 C 42 42, 42 24, 60 18 C 78 24, 78 42, 60 48 Z" transform="rotate(315 60 60)"/>
       </g>
-      <g fill="#e3c472">
+      <g fill="#f7d279">
         <circle cx="60" cy="8" r="1.6"/><circle cx="112" cy="60" r="1.6"/>
         <circle cx="60" cy="112" r="1.6"/><circle cx="8" cy="60" r="1.6"/>
       </g>
@@ -760,8 +758,6 @@ footer .f-en{
       <div class="env-flap"></div>
       <div class="env-seal"><span class="mono"><i>D</i><b>&amp;</b><i>A</i></span></div>
     </div>
-
-    <p class="cover-names">Dakshayini<span class="amp">weds</span>Ashwin</p>
 
     <div class="tap">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 013 0V11m0-1.5a1.5 1.5 0 013 0V12m0-1a1.5 1.5 0 013 0v5.5A5.5 5.5 0 0112.5 22h-1a5.5 5.5 0 01-5.5-5.5V13a1.5 1.5 0 013 0"/></svg>
@@ -836,10 +832,10 @@ footer .f-en{
       <div class="knot" aria-hidden="true">
         <svg viewBox="0 0 56 60">
           <circle cx="28" cy="40" r="14" fill="none" stroke="#ebcd7d" stroke-width="1.8"/>
-          <circle cx="28" cy="40" r="10.4" fill="none" stroke="#f6e7bd" stroke-width=".9" opacity=".5"/>
-          <path d="M28 9l6.8 7.6L28 27l-6.8-10.4L28 9z" fill="#f6e7bd" fill-opacity=".4"
+          <circle cx="28" cy="40" r="10.4" fill="none" stroke="#fdeec6" stroke-width=".9" opacity=".5"/>
+          <path d="M28 9l6.8 7.6L28 27l-6.8-10.4L28 9z" fill="#fdeec6" fill-opacity=".4"
                 stroke="#ebcd7d" stroke-width="1.5" stroke-linejoin="round"/>
-          <g fill="none" stroke="#f6e7bd" stroke-width=".9" opacity=".7">
+          <g fill="none" stroke="#fdeec6" stroke-width=".9" opacity=".7">
             <path d="M21.2 16.6h13.6"/>
             <path d="M24.6 16.6L28 9l3.4 7.6"/>
             <path d="M24.6 16.6L28 27l3.4-10.4"/>
@@ -848,14 +844,14 @@ footer .f-en{
             <path d="M22.6 19.4l-1.8 5"/>
             <path d="M33.4 19.4l1.8 5"/>
           </g>
-          <g fill="#f6e7bd" opacity=".8">
+          <g fill="#fdeec6" opacity=".8">
             <path d="M44 12l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9L44 12z"/>
             <path d="M10.5 20l.6 1.8 1.8.6-1.8.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6.6-1.8z"/>
           </g>
         </svg>
       </div>
 
-      <h2 class="k-en" id="bl-h">With Grace of God and Divine Blessings</h2>
+      <h2 class="k-en" id="bl-h">With the Grace of God and Divine Blessings</h2>
       <div class="divider"><span></span><i>&#10070;</i><span></span></div>
     </section>
 
@@ -874,16 +870,20 @@ footer .f-en{
         <div class="divider"><span></span><i>&#10070;</i><span></span></div>
 
         <div class="event-rows">
-          <div class="erow">
+          <div class="erow erow--full">
             <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
             <div><p class="k">Date</p><p class="v">Saturday, 15 November 2026</p></div>
           </div>
           <div class="erow">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-            <div><p class="k">Time</p><p class="v">6:00 PM onwards</p></div>
+            <div><p class="k">Nalungu</p><p class="v">6:15 PM &ndash; 7:15 PM</p></div>
+          </div>
+          <div class="erow">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <div><p class="k">Reception</p><p class="v">7:35 PM &ndash; 9:00 PM</p></div>
           </div>
         </div>
-        <p class="event-note">An evening of music, laughter and the traditional nalungu ceremony, followed by dinner.</p>
+        <p class="event-note">An evening of music, laughter and the traditional nalungu ceremony, followed by the reception and dinner.</p>
       </section>
 
       <!-- DAY TWO -->
@@ -894,7 +894,7 @@ footer .f-en{
         <svg class="corner br" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M39 1H10C5 1 1 5 1 10v29"/><path d="M33 7H14c-4 0-7 3-7 7v19" opacity=".55"/><circle cx="7" cy="7" r="2.2" fill="currentColor" stroke="none"/></svg>
 
         <span class="event-no">Day Two</span>
-        <h2 class="k-en" id="e2-h">Muhurtam &mdash; The Wedding Ceremony</h2>
+        <h2 class="k-en" id="e2-h">Muhurtam The Wedding Ceremony</h2>
         <div class="divider"><span></span><i>&#10070;</i><span></span></div>
 
         <div class="event-rows">
@@ -904,10 +904,10 @@ footer .f-en{
           </div>
           <div class="erow">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
-            <div><p class="k">Muhurtam</p><p class="v">9:00 AM &ndash; 10:30 AM</p></div>
+            <div><p class="k">Muhurtam</p><p class="v">6:15 AM &ndash; 7:15 AM</p></div>
           </div>
         </div>
-        <p class="event-note">Your presence at the muhurtam, followed by lunch, will be our greatest blessing.</p>
+        <p class="event-note">Your presence at the muhurtam to bless the couple will be our greatest joy.</p>
       </section>
 
     </div>
@@ -990,7 +990,7 @@ footer .f-en{
 /* ============================================================
    CONFIG
    ============================================================ */
-var WEDDING_START = new Date("2026-11-15T18:00:00+05:30"); // Nalungu, 6 PM IST
+var WEDDING_START = new Date("2026-11-15T18:15:00+05:30"); // Nalungu, 6:15 PM IST
 var YT_VIDEO_ID   = "CqXjW27NlHs";                          // music source
 
 /* ============================================================
@@ -1205,7 +1205,7 @@ coverSparkles(16);
 /* ============================================================
    FALLING PETALS
    ============================================================ */
-var PETALS = ['#f2c572','#ebcd7d','#f6e7bd','#d9b86a','#c9a24a','#e7cfc6','#b8891f','#a8801e'];
+var PETALS = ['#f7d279','#df9f1c','#e2576a','#c0327a','#ffb38a','#fdeec6','#f08a5d','#c13a4c'];
 function rainPetals(n){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   for(var i=0;i<n;i++) makePetal(i*380);
@@ -1235,4 +1235,4 @@ function makePetal(delay){
 }
 </script>
 </body>
-  </html>
+</html>
